@@ -4,49 +4,49 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// ÀÔ·Â °ªÀ» ±×´ë·Î List¿¡ ÀúÀåÇØ µ×´Ù°¡ exit µé¾î¿À¸é List ¸¦ Âß µ¹¾Æ¼­ ±Â¸ğ´× ÇÔ¼ö È£ÃâÇÏ¸é¼­ Ãâ·ÂÇÑ´Ù.
+// ì…ë ¥ ê°’ì„ ê·¸ëŒ€ë¡œ List ì— ì €ì¥í•´ ë’€ë‹¤ê°€ exit ë“¤ì–´ì˜¤ë©´ List ë¥¼ ì­‰ ëŒì•„ì„œ êµ¿ëª¨ë‹ í•¨ìˆ˜ í˜¸ì¶œí•˜ë©´ì„œ ì¶œë ¥
 public class GoodMorningMessage {
+    private static String getGoodMorningMessage(String to) {
+        String from = null;
 
-   private static String getGoodMorningMessage(String to) {
-      String from = null;
+        // String ê°„ ë¹„êµí•  ë•Œ í•˜ë‚˜ëŠ” null ê°€ëŠ¥ì„±ì´ ìˆê³  í•˜ë‚˜ëŠ” í™•ì‹¤íˆ ì—†ìœ¼ë©´,
+        // null ê°€ëŠ¥ì„±ì´ ì—†ëŠ” ì• ì˜ equals í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ë©´ null ìµì…‰ì…˜ì„ í”¼í•  ìˆ˜ ìˆìŒ
+        if (("ê¹€í˜œë¦¼").equals(to)) {
+            from = "ì´ì§„ìš±";
+        } else if (("ê¹€ì£¼ì•„").equals(to)) {
+            from = "ë°•ë³´ê²€";
+        }
 
-      if (("±èÇı¸²").equals(to)) {
-         from = "ÀÌÁø¿í";
-      } else if (("±èÁÖ¾Æ").equals(to)) {
-         from = "¹Úº¸°Ë";
-      }
-      
-      if (from != null) {
-         return String.format("%s : %s ±Â¸ğ´×!", from, to);
-      }
+        if (from != null) {
+            return String.format("%s : %s êµ¿ëª¨ë‹!", from, to);
+        }
 
-      throw new IllegalArgumentException(String.format("%s´Â ÀÎ»çÇØÁÙ »ç¶÷ÀÌ ¾ø½À´Ï´Ù¤Ì.¤Ğ", to));
-   }
+        throw new IllegalArgumentException(String.format("%sëŠ” ì¸ì‚¬í•´ì¤„ ì‚¬ëŒì´ ì—†ìŠµë‹ˆë‹¤ã…œ.ã… ", to));
+    }
 
-   public static void main(String[] args) {
+    public static void main(String[] args) {
+        String to;
+        List<String> list = new ArrayList<String>();
+        Scanner sc = new Scanner(System.in);
 
-      String to;
-      List<String> list = new ArrayList<String>();
 
-      try {
-         while(true) {
-            Scanner sc = new Scanner(System.in);
+        while (true) {
             to = sc.nextLine();
-            
-            if("exit".equals(to)) {
-               for(String result : list) {
-                  System.out.println(result);
-               }
-               break;
+            try {
+
+                if ("exit".equals(to)) {
+                    for (String result : list) {
+                        System.out.println(result);
+                    }
+                    break;
+                }
+                System.out.println(getGoodMorningMessage(to));  // ì—¬ê¸°ì„œ ê¹€íš¨ìš° ì—ëŸ¬ ë°œìƒ
+                list.add(getGoodMorningMessage(to).toString());
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage()); // eëŠ” êµ¿ëª¨ë‹ í•¨ìˆ˜ì—ì„œ ë˜ì§„ ìµì…‰ì…˜ ê°ì²´
+                list.add(e.getMessage());
             }
-            
-            System.out.println(getGoodMorningMessage(to));
-            list.add(getGoodMorningMessage(to).toString());
-         }
-      } catch (Exception e) {
-         System.out.println(e.getMessage());
-      }
-
-   }
-
+        }
+    }
 }
