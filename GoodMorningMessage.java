@@ -1,10 +1,10 @@
-package com.test;
+package homework;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// 입력 값을 그대로 List 에 저장해 뒀다가 exit 들어오면 List 를 쭉 돌아서 굿모닝 함수 호출하면서 출력
+// 과제1 : 입력 값을 그대로 List 에 저장해 뒀다가 exit 들어오면 List 를 쭉 돌아서 굿모닝 함수 호출하면서 출력
 public class GoodMorningMessage {
     private static String getGoodMorningMessage(String to) {
         String from = null;
@@ -29,20 +29,20 @@ public class GoodMorningMessage {
         List<String> list = new ArrayList<String>();
         Scanner sc = new Scanner(System.in);
 
-
         while (true) {
-            to = sc.nextLine();
             try {
-
+                to = sc.nextLine();
+                /*if ("exit".equals(to)) {
+                    list.forEach((result) -> System.out.println(result));
+                }*/
                 if ("exit".equals(to)) {
                     for (String result : list) {
                         System.out.println(result);
                     }
                     break;
                 }
-                System.out.println(getGoodMorningMessage(to));  // 여기서 김효우 에러 발생
-                list.add(getGoodMorningMessage(to).toString());
-
+                list.add(getGoodMorningMessage(to));
+                System.out.println(getGoodMorningMessage(to));
             } catch (Exception e) {
                 System.out.println(e.getMessage()); // e는 굿모닝 함수에서 던진 익셉션 객체
                 list.add(e.getMessage());
