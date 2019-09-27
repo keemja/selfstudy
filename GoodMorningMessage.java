@@ -36,9 +36,6 @@ public class GoodMorningMessage {
                     list.forEach((result) -> System.out.println(result));
                 }*/
                 if ("exit".equals(to)) {
-                    for (String result : list) {
-                        System.out.println(result);
-                    }
                     break;
                 }
                 list.add(getGoodMorningMessage(to));
@@ -47,6 +44,9 @@ public class GoodMorningMessage {
                 System.out.println(e.getMessage()); // e는 굿모닝 함수에서 던진 익셉션 객체
                 list.add(e.getMessage());
             }
+        }
+        for (String result : list) {
+            System.out.println(result);
         }
     }
 }
